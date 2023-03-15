@@ -4,6 +4,7 @@ html {
 
 h1 {
     position: relative;
+    width: 300px;
     left: 85px;
     color: rgb(40, 250, 50);
     text-decoration: underline;
@@ -98,27 +99,93 @@ td {
     border-radius: 5px;
 }
 
-.barcode {
+.barcode-red {
     border-radius: 5px;
-    outline: 2px solid rgb(68, 0, 255);
-    margin-top: 2px;
+    outline: 4px solid rgb(255, 0, 0);
+    margin-top: 5px;
     margin-bottom: 5px;
     box-shadow: 6px 6px 8px rgb(30, 102, 131);
 }
 
-div {
-    margin: -10px 62px;
-    height: 200px;
-    width: 550px;
-    overflow: scroll;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 115px;
-    row-gap: 10px;
+.barcode-green {
+    border-radius: 5px;
+    outline: 4px solid rgb(0, 255, 0);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 6px 6px 8px rgb(30, 102, 131);
 }
 
-div::-webkit-scrollbar {
-    overflow: hidden;
-    display: none;
+#barcodeContainer {
+    position: relative;
+    display: flex;
+    left: 79px;
+    height: 400px;
+    gap: 10px;
+    top: -20px;
+    width: 520px;
+    justify-content: center;
+}
+
+#greenToteList {
+    position: relative;
+    width: 165px;
+    height: 400px;
+    overflow-y: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: aliceblue;
+}
+
+#greenToteList>p {
+    position: relative;
+    left: 10px;
+}
+
+#greenToteList>p:hover {
+    color: rgb(0, 182, 0);
+    width: 100%;
+}
+
+#redToteList {
+    position: relative;
+    width: 165px;
+    height: 400px;
+    overflow-y: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: aliceblue;
+}
+
+#redToteList>p {
+    position: relative;
+    left: 10px;
+}
+
+#redToteList>p:hover {
+    color: red;
+    width: 100%;
+}
+
+#totalToteList {
+    position: relative;
+    width: 165px;
+    height: 400px;
+    overflow-y: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+    background-color: aliceblue;
+}
+
+#totalToteList>p {
+    position: relative;
+    left: 10px;
+}
+
+#selectedTextBarcode {
+    position: absolute;
+    z-index: 4;
+    right: 60px;
+    top: 95px;
+    height: 110px;
+    width: 210px;
 }

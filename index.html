@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tote To Bin Utility Site</title>
     <link rel="stylesheet" href="TTBRoute.css">
-    <script src="TTB.js"></script>
     <script src="JsBarcode.code128.min.js"></script>
 </head>
 <h1>TTB Sort</h1>
@@ -30,15 +29,17 @@
         </table>
     </section>
     <section>
-        <button class="sortTTB" onclick="generateBarcodes(document.getElementById('ineligibleCount').innerText)">Sort
-            TTB</button>
+        <button class="sortTTB">Sort TTB</button>
         <label class="VRIDLabel" for="VRID">VRID: </label>
         <input class="VRID" type="text" value=""></input>
     </section>
+    <div id="selectedTextBarcode"></div>
     <div id="barcodeContainer">
-        <!-- <img class="barcode" width="200" height="100" /> -->
-        <!-- <script>JsBarcode("#barcode1", "tsx0uasdl");</script> -->
+        <div id="totalToteList"></div>
+        <div id="greenToteList"></div>
+        <div id="redToteList"></div>
     </div>
+    <script src="TTB.js"></script>
 </body>
 
 </html>
