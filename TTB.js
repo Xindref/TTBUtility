@@ -23,11 +23,13 @@ function generateBarcode(value, color) {
 
 function generateListItem(count, color) {
     for (let i = 0; i < count; i++) {
-        let p = document.createElement('p');
-        p.innerText = randBarcode();
-        document.querySelector(`#${color}ToteList`).append(p);
-        p.addEventListener('click', function (e) {
+        let li = document.createElement('li');
+        li.innerText = randBarcode();
+        document.querySelector(`#${color}ToteList`).append(li);
+        li.addEventListener('click', function (e) {
             document.querySelector('#selectedTextBarcode').innerHTML = '';
+            barcode = document.querySelector('#selectedTextBarcode');
+            barcode.hidden = false;
             generateBarcode(e.target.innerText, `${color}`);
         })
     }
@@ -36,11 +38,20 @@ function generateListItem(count, color) {
 document.querySelector('#ineligibleCount').addEventListener('click', function () {
     amount = document.querySelector('#ineligibleCount').innerText;
     document.querySelector('#redToteList').innerHTML = '';
+
     generateListItem(amount, 'red');
 });
 
 document.querySelector('#eligibleCount').addEventListener('click', function () {
     amount = document.querySelector('#eligibleCount').innerText;
     document.querySelector('#greenToteList').innerHTML = '';
+
     generateListItem(amount, 'green');
+});
+
+document.querySelector('#totalCount').addEventListener('click', function () {
+    amount = document.querySelector('#totalCount').innerText;
+    document.querySelector('#totalToteList').innerHTML = '';
+
+    generateListItem(amount, 'total');
 });

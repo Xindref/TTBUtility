@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="TTBRoute.css">
     <script src="JsBarcode.code128.min.js"></script>
 </head>
-<h1>TTB Sort</h1>
 
 <body>
     <section>
+        <h1>TTB Sort</h1>
+        <div id="selectedTextBarcode" hidden="true"></div>
         <table class="ttbTable">
             <thead>
                 <th>Total Tote Count</th>
@@ -33,11 +34,10 @@
         <label class="VRIDLabel" for="VRID">VRID: </label>
         <input class="VRID" type="text" value=""></input>
     </section>
-    <div id="selectedTextBarcode"></div>
     <div id="barcodeContainer">
-        <div id="totalToteList"></div>
-        <div id="greenToteList"></div>
-        <div id="redToteList"></div>
+        <ul id="totalToteList"></ul>
+        <ul id="greenToteList"></ul>
+        <ul id="redToteList"></ul>
     </div>
     <script src="TTB.js"></script>
 </body>

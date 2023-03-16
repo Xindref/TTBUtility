@@ -1,10 +1,14 @@
-html {
+body {
+    position: relative;
     background-color: lightskyblue;
+    left: -65px;
+    top: -45px;
 }
 
 h1 {
     position: relative;
     width: 300px;
+    top: 5px;
     left: 85px;
     color: rgb(40, 250, 50);
     text-decoration: underline;
@@ -16,7 +20,7 @@ h1 {
 table {
     position: relative;
     left: 80px;
-    top: -30px;
+    top: -20px;
     text-align: right;
     background-color: rgb(69, 182, 190);
     box-shadow: 2px 2px 5px rgb(30, 102, 131);
@@ -55,8 +59,8 @@ td {
 
 .sortTTB {
     position: absolute;
-    top: 62px;
-    left: 505px;
+    top: 32px;
+    left: 495px;
     height: 30px;
     width: 100px;
     font-size: 18px;
@@ -76,27 +80,19 @@ td {
 .VRID {
     position: absolute;
     width: 180px;
-    top: 71px;
-    left: 310px;
+    top: 41px;
+    left: 300px;
     box-shadow: 1px 1px 5px rgb(30, 102, 131);
     border-radius: 4px;
 }
 
 .VRIDLabel {
     position: absolute;
-    top: 50px;
-    left: 310px;
+    color: white;
+    top: 18px;
+    left: 300px;
     font-size: 20px;
-    text-shadow: 1px 1px 2px rgb(19, 46, 82);
-}
-
-#barcode1 {
-    position: absolute;
-    top: 65px;
-    left: 613px;
-    outline: 2px solid rgb(68, 0, 255);
-    box-shadow: 4px 4px 5px rgb(30, 102, 131);
-    border-radius: 5px;
+    text-shadow: 2px 2px 1px rgb(19, 46, 82);
 }
 
 .barcode-red {
@@ -115,77 +111,105 @@ td {
     box-shadow: 6px 6px 8px rgb(30, 102, 131);
 }
 
+.barcode-total {
+    border-radius: 5px;
+    outline: 4px solid rgb(0, 47, 255);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 6px 6px 8px rgb(30, 102, 131);
+}
+
 #barcodeContainer {
     position: relative;
     display: flex;
     left: 79px;
+    top: -25px;
     height: 400px;
     gap: 10px;
-    top: -20px;
     width: 520px;
     justify-content: center;
 }
 
-#greenToteList {
-    position: relative;
-    width: 165px;
-    height: 400px;
-    overflow-y: hidden;
-    overflow: scroll;
-    overflow-x: hidden;
-    background-color: aliceblue;
-}
-
-#greenToteList>p {
-    position: relative;
-    left: 10px;
-}
-
-#greenToteList>p:hover {
-    color: rgb(0, 182, 0);
-    width: 100%;
-}
-
-#redToteList {
-    position: relative;
-    width: 165px;
-    height: 400px;
-    overflow-y: hidden;
-    overflow: scroll;
-    overflow-x: hidden;
-    background-color: aliceblue;
-}
-
-#redToteList>p {
-    position: relative;
-    left: 10px;
-}
-
-#redToteList>p:hover {
-    color: red;
-    width: 100%;
-}
-
+#greenToteList,
+#redToteList,
 #totalToteList {
     position: relative;
     width: 165px;
-    height: 400px;
-    overflow-y: hidden;
-    overflow: scroll;
-    overflow-x: hidden;
+    height: 390px;
     background-color: aliceblue;
+    overflow-x: hidden;
+    text-shadow: 1px 1px 1px rgb(172, 172, 172);
+    border-radius: 10px;
+    box-shadow: 0px 4px 5px black;
+
 }
 
-#totalToteList>p {
+#greenToteList::-webkit-scrollbar,
+#redToteList::-webkit-scrollbar,
+#totalToteList::-webkit-scrollbar {
+    display: none;
+}
+
+#greenToteList>li,
+#redToteList>li,
+#totalToteList>li {
     position: relative;
-    left: 10px;
+    list-style: none;
+    font-size: 19px;
+    width: 167px;
+    left: -40.5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+#greenToteList>li {
+    background-color: rgb(205, 241, 204);
+}
+
+#greenToteList>li:nth-child(2n) {
+    background-color: rgb(186, 221, 197);
+}
+
+#redToteList>li {
+    background-color: rgb(241, 204, 204);
+}
+
+#redToteList>li:nth-child(2n) {
+    background-color: rgb(221, 186, 186);
+}
+
+#totalToteList>li {
+    background-color: rgb(204, 216, 241);
+}
+
+#totalToteList>li:nth-child(2n) {
+    background-color: rgb(186, 194, 221);
+}
+
+#greenToteList>li:hover {
+    background-color: rgb(0, 182, 0);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+#redToteList>li:hover {
+    background-color: red;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+#totalToteList>li:hover {
+    background-color: rgb(37, 131, 255);
+    color: white;
+    text-shadow: 1px 1px 1px black;
 }
 
 #selectedTextBarcode {
-    position: absolute;
+    position: relative;
     z-index: 4;
-    right: 60px;
-    top: 95px;
+    left: 240px;
+    top: -28px;
     height: 110px;
     width: 210px;
 }
