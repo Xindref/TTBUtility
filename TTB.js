@@ -35,6 +35,10 @@ function generateListItem(count, color) {
     }
 }
 
+document.querySelector('.sortTTB').addEventListener('click', function () {
+    LoadContents();
+});
+
 document.querySelector('#ineligibleCount').addEventListener('click', function () {
     amount = document.querySelector('#ineligibleCount').innerText;
     document.querySelector('#redToteList').innerHTML = '';
