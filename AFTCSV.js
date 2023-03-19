@@ -1,14 +1,33 @@
-const url = 'https://corsproxy.io/?' + encodeURIComponent('https://afttransshipmenthub-na.aka.amazon.com/inbound/getTransferManifestsByDateAndSourceWarehouse/?startDate=2023-03-09&endDate=2023-04-06&warehouseId=DAL2&_=1679004556188');
+const url = 'http://anyorigin.com/go?url=' + encodeURIComponent('https://afttransshipmenthub-na.aka.amazon.com/inbound/getTransferManifestsByDateAndSourceWarehouse/?startDate=2023-03-09&endDate=2023-04-06&warehouseId=DAL2&_=1679004556188');
 
-async function LoadContents(actionStr, parameters) {
-    fetch(url)
+let toteList = document.querySelector('#totalToteList');
+let count = 0;
+
+function LoadContents() {
+    fetch("transferContainerHierarchy.json")
         .then(response => response.text())
-        .then(json => {
-            var parser = new DOMParser();
+        .then(data => {
+            let containers = JSON.parse(data).transferContainerHierarchy;
+            let shipRefId = 'TUL2_DAL2_b7c072df-86e8-43d2-a043-9eda2adbfa8b';
+            let loadId = '112F4NF8K';
+            let unpackedList = [];
 
-            var doc = parser.parseFromString(json, "text/html");
-            let epName = doc.querySelector('.grid-container > div > div > a')
-            console.log(epName.href);
+            for (const container of containers) {
+                unpackContainer(container, unpackedList,
+                    {
+                        containerId: container.container.scannableId,
+                        containerType: container.containerType,
+                        containerQuantity: container.quantityItems,
+                        containerStatus: container.containerStatus
+                    }
+                );
+            }
+
+            let csvArr = [];
+            csvArr.push(unpackedList.map(item => `${item.containerId},${item.containerQuantity}`))
+            csvArr[0].unshift('TOTE, Item Count');
+
+            downloadCSV(csvArr[0].join('\n'), `${shipRefId}-${loadId}.csv`)
         })
 }
 
@@ -22,22 +41,26 @@ function unpackContainer(container, unpackedList, parentContainerObj) {
                 containerQuantity: container.quantityItems
             }
         );
+        if (JSON.stringify(childContainer.container.scannableId).includes('tsX')) {
+            generateListItem(1, 'total', childContainer.container.scannableId);
+        }
     }
 
-    for (item of container.items) {
-        let itemObj = item
+    if (container.items !== null) {
+        for (item of container.items) {
+            let itemObj = item
 
-        itemObj.containerId = container.container.scannableId
-        itemObj.containerType = container.containerType
-        itemObj.containerStatus = container.containerStatus
-        itemObj.containerQuantity = container.quantityItems
+            itemObj.containerId = container.container.scannableId
+            itemObj.containerQuantity = container.quantityItems
 
-        itemObj.parentContainerId = parentContainerObj.containerId
-        itemObj.parentContainerType = parentContainerObj.containerType
-        itemObj.parentContainerStatus = parentContainerObj.containerStatus
-        itemObj.parentContainerQuantity = parentContainerObj.containerQuantity
+            unpackedList.push(itemObj)
+        }
+    }
 
-        unpackedList.push(itemObj)
+    for (let i = 1; i < unpackedList.length; i++) {
+        if (unpackedList[i].containerId === unpackedList[i - 1].containerId) {
+            unpackedList.splice(i, 1);
+        }
     }
 }
 

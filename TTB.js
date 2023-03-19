@@ -21,10 +21,13 @@ function generateBarcode(value, color) {
     document.getElementById("selectedTextBarcode").appendChild(img);
 }
 
-function generateListItem(count, color) {
+function generateListItem(count, color, tote) {
     for (let i = 0; i < count; i++) {
         let li = document.createElement('li');
-        li.innerText = randBarcode();
+        if (tote === undefined) {
+            li.innerText = randBarcode();
+        }
+        li.innerText = tote;
         document.querySelector(`#${color}ToteList`).append(li);
         li.addEventListener('click', function (e) {
             document.querySelector('#selectedTextBarcode').innerHTML = '';
